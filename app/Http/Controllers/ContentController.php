@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Content;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class ContentController extends Controller
@@ -38,7 +39,8 @@ class ContentController extends Controller
                 'filename' => $fileName,
             ]);
 
-            $file->storeAs('public/images', $fileName);
+            Storage::disk('public')->putFileAs('images', $file, $fileName);
+            // Storage::put('public', $file, $fileName);
 
             return redirect()->back()->with('success', 'File uploaded successfully');
         }

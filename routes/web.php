@@ -38,6 +38,10 @@ Route::middleware('auth') -> group(function () {
     Route::get('/content/upload', function() {
         return view(view: 'page.content.page-upload');
     }) -> middleware('role') -> name('content.upload');
+
+    Route::get('/content/data', function() {
+        return view(view: 'page.content.page-data');
+    }) -> middleware('role') -> name('content.data');
     
     /* - POST - */
     Route::post('/auth/logout', [AuthController::class, 'logout']) -> name('logout'); 
